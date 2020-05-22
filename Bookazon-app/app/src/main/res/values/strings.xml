@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">BookazonApp</string>
+    <string name="logo_description">logo</string>
+    <string name="nameApp">Bookazon</string>
+    <string name="et_email">Email</string>
+    <string name="password">Contraseña</string>
+    <string name="btn_login">Login</string>
+    <string name="tv_signup">REGÍSTRATE EN LA APP</string>
+    <string name="title_activity_dashboard">DashboardActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+    <string name="signupTitle">¡Regístrate en Bookazon!</string>
+    <string name="rg_name">Nombre</string>
+    <string name="rg_surname">Apellidos</string>
+    <string name="rg_email">Email</string>
+    <string name="rg_password">Contraseña</string>
+    <string name="rg_password2">Repita su contraseña</string>
+    <string name="rg_dni">DNI</string>
+    <string name="rg_phone">Teléfono</string>
+    <string name="rg_doSignUp">CONFIRMAR</string>
+</resources>

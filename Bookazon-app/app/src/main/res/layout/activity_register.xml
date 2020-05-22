@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.RegisterActivity">
+
+    <TextView
+        android:id="@+id/tv_signUpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="@string/signupTitle"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/rg_nombre"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="60dp"
+        android:ems="10"
+        android:hint="@string/rg_name"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_signUpTitle" />
+
+    <EditText
+        android:id="@+id/rg_apellidos"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/rg_surname"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/rg_nombre"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rg_nombre"
+        app:layout_constraintTop_toBottomOf="@+id/rg_nombre" />
+
+    <EditText
+        android:id="@+id/rg_email"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/rg_email"
+        android:inputType="textEmailAddress"
+        app:layout_constraintEnd_toEndOf="@+id/rg_apellidos"
+        app:layout_constraintStart_toStartOf="@+id/rg_apellidos"
+        app:layout_constraintTop_toBottomOf="@+id/rg_apellidos" />
+
+    <EditText
+        android:id="@+id/rg_password"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/rg_password"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/rg_email"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rg_email"
+        app:layout_constraintTop_toBottomOf="@+id/rg_email" />
+
+    <EditText
+        android:id="@+id/rg_password2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/rg_password2"
+        android:inputType="textPassword"
+        app:layout_constraintEnd_toEndOf="@+id/rg_password"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rg_password"
+        app:layout_constraintTop_toBottomOf="@+id/rg_password" />
+
+    <EditText
+        android:id="@+id/rg_dni"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/rg_dni"
+        android:inputType="textPersonName"
+        app:layout_constraintEnd_toEndOf="@+id/rg_password2"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/rg_password2"
+        app:layout_constraintTop_toBottomOf="@+id/rg_password2" />
+
+    <EditText
+        android:id="@+id/rg_phone"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:ems="10"
+        android:hint="@string/rg_phone"
+        android:inputType="number"
+        app:layout_constraintEnd_toEndOf="@+id/rg_dni"
+        app:layout_constraintStart_toStartOf="@+id/rg_dni"
+        app:layout_constraintTop_toBottomOf="@+id/rg_dni" />
+
+    <Button
+        android:id="@+id/btn_signUp"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:text="@string/rg_doSignUp"
+        android:textColor="#FFFFFF"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/rg_phone"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="@+id/rg_phone"
+        app:layout_constraintTop_toBottomOf="@+id/rg_phone" />
+</androidx.constraintlayout.widget.ConstraintLayout>
