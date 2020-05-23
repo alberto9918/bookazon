@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.santiagorodriguezalberto.bookazonapp.R
+import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.list.BibliotecaFragment
 
 class DashboardFragment : Fragment() {
 

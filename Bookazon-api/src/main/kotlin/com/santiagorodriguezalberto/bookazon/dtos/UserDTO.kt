@@ -3,6 +3,7 @@ package com.santiagorodriguezalberto.bookazon.dtos
 import com.santiagorodriguezalberto.bookazon.entity.Reserva
 import com.santiagorodriguezalberto.bookazon.entity.Usuario
 import java.util.*
+import kotlin.collections.ArrayList
 
 data class UserDTO(
         var nombre : String,
@@ -11,7 +12,7 @@ data class UserDTO(
         var dni: String,
         var telefono: Int,
         var profileImage: String? = null,
-        var reservas: MutableList<Reserva>? = null,
+        var reservas: MutableList<Reserva>? = ArrayList(),
         val id: UUID? = null
 )
 

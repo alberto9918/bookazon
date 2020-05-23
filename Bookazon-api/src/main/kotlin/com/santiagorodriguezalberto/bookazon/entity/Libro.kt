@@ -7,13 +7,15 @@ import javax.persistence.*
 @Table(name = "Libro")
 @Inheritance(strategy= InheritanceType.SINGLE_TABLE)
 open class Libro(
-        open var titulo: String? = null,
+        open var titulo: String,
 
-        open var autor: String? = null,
+        open var autor: String,
 
-        open var isbn: String? = null,
+        open var genero: String,
 
-        open var editorial: String? = null,
+        open var isbn: String,
+
+        open var editorial: String,
 
         open var imagen: String? = null,
 

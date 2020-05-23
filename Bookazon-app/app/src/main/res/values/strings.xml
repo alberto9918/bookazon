@@ -19,4 +19,13 @@
     <string name="rg_dni">DNI</string>
     <string name="rg_phone">Teléfono</string>
     <string name="rg_doSignUp">CONFIRMAR</string>
+    <string name="title_activity_maps">Map</string>
+    <string name="title_bibliotecas">Bibliotecas</string>
+    <string name="title_reservas">Reservas</string>
+    <string name="title_profile">Perfil</string>
+    <string name="action_show_map">Mostrar mapa</string>
+    <string name="action_show_list">Mostrar lista</string>
+    <string name="b_name">Nombre :</string>
+    <string name="biblioteca_name">biblioteca</string>
+    <string name="dt_CopyList">Lista de copias</string>
 </resources>

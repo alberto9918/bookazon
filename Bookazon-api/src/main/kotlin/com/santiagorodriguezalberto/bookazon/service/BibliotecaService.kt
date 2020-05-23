@@ -13,6 +13,8 @@ class BibliotecaService(
 
     fun findById(id : UUID) = repo.findById(id)
 
+    fun findByNombre(nombre: String) = repo.findByNombre(nombre)
+
     fun crearBiblioteca(biblioteca: Biblioteca) = repo.save(biblioteca)
 
     fun editarBiblioteca(biblioteca: Biblioteca) = repo.save(biblioteca)

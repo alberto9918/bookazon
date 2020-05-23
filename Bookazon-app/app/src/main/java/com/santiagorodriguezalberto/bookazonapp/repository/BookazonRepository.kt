@@ -10,6 +10,7 @@ import com.santiagorodriguezalberto.bookazonapp.api.response.LoginResponse
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.SharedPreferencesManager
+import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
 import com.santiagorodriguezalberto.bookazonapp.model.Usuario
 import retrofit2.Call
 import retrofit2.Callback
@@ -18,12 +19,14 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class BookazonRepository  @Inject constructor(var damKeepService: BookazonService) {
+class BookazonRepository  @Inject constructor(var bookazonService: BookazonService) {
     var user: MutableLiveData<Usuario> = MutableLiveData()
     var newUser: MutableLiveData<Usuario> = MutableLiveData()
+    var bibliotecas: MutableLiveData<List<Biblioteca>> = MutableLiveData()
+    var biblioteca: MutableLiveData<Biblioteca> = MutableLiveData()
 
     fun doLogin(request: LoginRequest): MutableLiveData<Usuario> {
-        val call: Call<LoginResponse>? = damKeepService.doLogin(request)
+        val call: Call<LoginResponse>? = bookazonService.doLogin(request)
 
         call?.enqueue(object : Callback<LoginResponse> {
             override fun onResponse(
@@ -62,7 +65,7 @@ class BookazonRepository  @Inject constructor(var damKeepService: BookazonServic
     }
 
     fun doSignUp(registerRequest: RegisterRequest): MutableLiveData<Usuario>{
-        val call: Call<Usuario> = damKeepService.doSignup(registerRequest)
+        val call: Call<Usuario> = bookazonService.doSignup(registerRequest)
 
         call?.enqueue(object : Callback<Usuario> {
 
@@ -90,6 +93,55 @@ class BookazonRepository  @Inject constructor(var damKeepService: BookazonServic
         })
 
         return  newUser
+    }
+
+    fun getAllBibliotecas(): MutableLiveData<List<Biblioteca>> {
+        val call: Call<List<Biblioteca>>? = bookazonService.getBibliotecas()
+
+        call?.enqueue(object : Callback<List<Biblioteca>> {
+            override fun onResponse(call: Call<List<Biblioteca>>, response: Response<List<Biblioteca>>) {
+                if (response.isSuccessful) bibliotecas.value = response.body()
+                Constantes.LISTA_BIBLIOTECAS = response.body()
+            }
+
+            override fun onFailure(call: Call<List<Biblioteca>>, t: Throwable) {
+                Toast.makeText(MyApp.instance, t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        return bibliotecas
+    }
+
+    fun getBibliotecaByName(nombre: String): MutableLiveData<Biblioteca> {
+        val call: Call<Biblioteca> = bookazonService.getBibliotecaByName(nombre)
+
+        call?.enqueue(object : Callback<Biblioteca> {
+
+            override fun onResponse(
+                call: Call<Biblioteca>,
+                response: Response<Biblioteca>
+            ) {
+                if (!response.isSuccessful) {
+                    // error
+                    Log.e("RequestError", response.message())
+                    Toast.makeText(MyApp.instance, "No se ha encontrado ninguna biblioteca con ese nombre", Toast.LENGTH_SHORT).show()
+                } else {
+                    // exito
+                    biblioteca.value = response.body()
+
+                }
+            }
+
+            override fun onFailure(
+                call: Call<Biblioteca>,
+                t: Throwable
+            ) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "Error. Can't connect to server", Toast.LENGTH_SHORT).show()
+            }
+
+        })
+
+        return biblioteca
     }
 
 }

@@ -3,22 +3,22 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation"
-    app:startDestination="@+id/navigation_home">
+    app:startDestination="@+id/navigation_bibliotecas">
 
     <fragment
-        android:id="@+id/navigation_home"
-        android:name="com.santiagorodriguezalberto.bookazonapp.ui.navigation.home.HomeFragment"
+        android:id="@+id/navigation_bibliotecas"
+        android:name="com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.map.MapBibliotecaFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_map_biblioteca" />
 
     <fragment
-        android:id="@+id/navigation_dashboard"
+        android:id="@+id/navigation_reservas"
         android:name="com.santiagorodriguezalberto.bookazonapp.ui.navigation.dashboard.DashboardFragment"
         android:label="@string/title_dashboard"
         tools:layout="@layout/fragment_dashboard" />
 
     <fragment
-        android:id="@+id/navigation_notifications"
+        android:id="@+id/navigation_profile"
         android:name="com.santiagorodriguezalberto.bookazonapp.ui.navigation.notifications.NotificationsFragment"
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
