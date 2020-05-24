@@ -8,6 +8,7 @@ class Constantes {
         val SHARED_PREFS_FILE: String? = "SHARED_PREFERENCES_FILE"
         const val SHARED_PREFERENCES_TOKEN_KEYWORD = "token"
         const val INTENT_DETAIL_KEYWORD_LIBRARY_NAME="name"
+        const val INTENT_DETAIL_KEYWORD_COPY_ID="id"
         const val INTENT_DETAIL_KEYWORD_TITLE="title"
         const val INTENT_EDIT_KEYWORD = "edit"
         var LISTA_BIBLIOTECAS: List<Biblioteca>? = ArrayList()

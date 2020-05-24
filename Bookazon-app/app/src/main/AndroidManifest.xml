@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.biblioteca.list.BibliotecaListActivity"></activity>
+        <activity android:name=".ui.copia.detail.CopiaDetailActivity"></activity>
+        <activity android:name=".ui.biblioteca.list.BibliotecaListActivity" />
         <activity android:name=".ui.biblioteca.detail.BibliotecaDetailActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.

@@ -11,6 +11,8 @@ open class Libro(
 
         open var autor: String,
 
+        open var resumen: String,
+
         open var genero: String,
 
         open var isbn: String,

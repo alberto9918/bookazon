@@ -1,0 +1,8 @@
+2020-05-24 19:09:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "RESUMEN VARCHAR(255)": "STRINGDECODE('Dune es la primera novela de la serie hom\u00f3nima \u00abDune\u00bb de Frank Herbert, una obra maestra un\u00e1ni... (823)"
+Value too long for column "RESUMEN VARCHAR(255)": "STRINGDECODE('Dune es la primera novela de la serie hom\u00f3nima \u00abDune\u00bb de Frank Herbert, una obra maestra un\u00e1ni... (823)"; SQL statement:
+insert into libro (autor, editorial, genero, imagen, isbn, resumen, titulo, biblioteca_id, esta_reservada, numero_copia, dtype, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Copia', ?) [22001-200]
+2020-05-24 19:18:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLDataException: Valor demasiado largo para la columna "RESUMEN VARCHAR(255)": "STRINGDECODE('Dune es la primera novela de la serie hom\u00f3nima \u00abDune\u00bb de Frank Herbert, una obra maestra un\u00e1ni... (309)"
+Value too long for column "RESUMEN VARCHAR(255)": "STRINGDECODE('Dune es la primera novela de la serie hom\u00f3nima \u00abDune\u00bb de Frank Herbert, una obra maestra un\u00e1ni... (309)"; SQL statement:
+insert into libro (autor, editorial, genero, imagen, isbn, resumen, titulo, biblioteca_id, esta_reservada, numero_copia, dtype, id) values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'Copia', ?) [22001-200]

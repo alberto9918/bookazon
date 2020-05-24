@@ -7,7 +7,8 @@ import com.santiagorodriguezalberto.bookazonapp.ui.RegisterActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.detail.BibliotecaDetailActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.list.BibliotecaFragment
 import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.map.MapBibliotecaFragment
-import com.santiagorodriguezalberto.bookazonapp.ui.copia.CopiaFragment
+import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
+import com.santiagorodriguezalberto.bookazonapp.ui.copia.list.CopiaFragment
 import dagger.Component
 import javax.inject.Singleton
 
@@ -20,5 +21,6 @@ interface ApplicationComponent {
     fun inject(bibliotecaFragment: BibliotecaFragment)
     fun inject(bibliotecaDetailActivity: BibliotecaDetailActivity)
     fun inject(copiaFragment: CopiaFragment)
+    fun inject(copiaDetailActivity: CopiaDetailActivity)
     fun inject(mapBibliotecaFragment: MapBibliotecaFragment)
 }

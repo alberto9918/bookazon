@@ -11,6 +11,7 @@ import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.SharedPreferencesManager
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
+import com.santiagorodriguezalberto.bookazonapp.model.Copia
 import com.santiagorodriguezalberto.bookazonapp.model.Usuario
 import retrofit2.Call
 import retrofit2.Callback
@@ -22,8 +23,12 @@ import javax.inject.Singleton
 class BookazonRepository  @Inject constructor(var bookazonService: BookazonService) {
     var user: MutableLiveData<Usuario> = MutableLiveData()
     var newUser: MutableLiveData<Usuario> = MutableLiveData()
+
     var bibliotecas: MutableLiveData<List<Biblioteca>> = MutableLiveData()
     var biblioteca: MutableLiveData<Biblioteca> = MutableLiveData()
+
+    var copias: MutableLiveData<List<Copia>> = MutableLiveData()
+    var copia: MutableLiveData<Copia> = MutableLiveData()
 
     fun doLogin(request: LoginRequest): MutableLiveData<Usuario> {
         val call: Call<LoginResponse>? = bookazonService.doLogin(request)
@@ -104,8 +109,12 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
                 Constantes.LISTA_BIBLIOTECAS = response.body()
             }
 
-            override fun onFailure(call: Call<List<Biblioteca>>, t: Throwable) {
-                Toast.makeText(MyApp.instance, t.message, Toast.LENGTH_SHORT).show()
+            override fun onFailure(
+                call: Call<List<Biblioteca>>,
+                t: Throwable
+            ) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "Error. Can't connect to server", Toast.LENGTH_SHORT).show()
             }
         })
         return bibliotecas
@@ -142,6 +151,41 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
         })
 
         return biblioteca
+    }
+
+    fun getCopiasByBibliotecaName(biblioteca_name: String): MutableLiveData<List<Copia>> {
+        val call: Call<List<Copia>>? = bookazonService.getCopiasByBiblioteca(biblioteca_name)
+
+        call?.enqueue(object : Callback<List<Copia>> {
+            override fun onResponse(call: Call<List<Copia>>, response: Response<List<Copia>>) {
+                if (response.isSuccessful)
+                    copias.value = response.body()
+            }
+
+            override fun onFailure(
+                call: Call<List<Copia>>,
+                t: Throwable
+            ) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "ERROR AL LISTAR COPIAS", Toast.LENGTH_SHORT).show()
+            }
+        })
+        return copias
+    }
+
+    fun getCopia(id: String): MutableLiveData<Copia> {
+        val call: Call<Copia>? = bookazonService.getCopia(id)
+
+        call?.enqueue(object : Callback<Copia> {
+            override fun onResponse(call: Call<Copia>, response: Response<Copia>) {
+                if (response.isSuccessful) copia.value = response.body()
+            }
+
+            override fun onFailure(call: Call<Copia>, t: Throwable) {
+                Toast.makeText(MyApp.instance, t.message, Toast.LENGTH_SHORT).show()
+            }
+        })
+        return copia
     }
 
 }

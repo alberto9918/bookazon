@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import androidx.lifecycle.Observer
 import com.santiagorodriguezalberto.bookazonapp.R
+import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
@@ -24,6 +25,7 @@ class BibliotecaFragment : Fragment() {
     private lateinit var bibliotecaAdapter: MyBibliotecaRecyclerViewAdapter
     private var bibliotecas: List<Biblioteca> = ArrayList()
     private var columnCount = 1
+    private lateinit var nombreBiblioteca: String
 
 
     override fun onCreate(savedInstanceState: Bundle?) {

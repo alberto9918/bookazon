@@ -28,4 +28,12 @@
     <string name="b_name">Nombre :</string>
     <string name="biblioteca_name">biblioteca</string>
     <string name="dt_CopyList">Lista de copias</string>
+    <string name="copy_title">Titulo de la copia</string>
+    <string name="copy_author">Nombre del Autor</string>
+    <string name="copy_gender">"Género "</string>
+    <string name="copyEditorial">Editorial</string>
+    <string name="copyISBN">ISBN</string>
+    <string name="img_description">image</string>
+    <string name="btn_reservar">RESERVAR</string>
+    <string name="copy_resumen">Resumen</string>
 </resources>

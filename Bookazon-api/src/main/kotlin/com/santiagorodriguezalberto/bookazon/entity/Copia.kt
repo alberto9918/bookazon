@@ -19,6 +19,10 @@ data class Copia(
 
         @NotEmpty
         @NotNull
+        override var resumen: String,
+
+        @NotEmpty
+        @NotNull
         override var genero: String,
 
         @NotEmpty
@@ -44,5 +48,5 @@ data class Copia(
         var reserva: Reserva? = null
 
 
-): Libro(titulo,autor,genero,isbn,editorial,imagen) {
+): Libro(titulo,autor, resumen, genero,isbn,editorial,imagen) {
 }

@@ -10,7 +10,7 @@ import java.util.*
 class CopiaService(
         private val repo: CopiaRepository
 ) {
-    fun findAllByBiblioteca(biblioteca: Biblioteca) = repo.findAllByBiblioteca(biblioteca)
+    fun findAllByBiblioteca(biblioteca_name: String) = repo.findAllByBiblioteca(biblioteca_name)
 
     fun findAll() = repo.findAll()
 

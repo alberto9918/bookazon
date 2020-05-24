@@ -67,7 +67,7 @@ class MapBibliotecaFragment : Fragment() {
 
                 MyApp.instance.startActivity(i)
 
-                Toast.makeText(MyApp.instance, it.title, Toast.LENGTH_LONG).show()
+                //Toast.makeText(MyApp.instance, it.title, Toast.LENGTH_LONG).show()
                 /*val intent = Intent(MyApp.instance, RegisterActivity::class.java).apply {
                     putExtra(Constantes.INTENT_DETAIL_KEYWORD_TITLE, it.title)
                     Log.d("bibliotecas3",it.title)
