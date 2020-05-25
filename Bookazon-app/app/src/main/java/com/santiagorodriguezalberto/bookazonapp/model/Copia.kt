@@ -14,7 +14,6 @@ data class Copia(
     val numero_copia: Int,
     val esta_reservada: Boolean,
     val biblioteca: Biblioteca,
-    val reserva: Reserva,
     val id: UUID
 
 )

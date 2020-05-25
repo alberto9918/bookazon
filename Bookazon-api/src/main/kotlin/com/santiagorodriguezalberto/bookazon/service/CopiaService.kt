@@ -16,9 +16,9 @@ class CopiaService(
 
     fun findById(id : UUID) = repo.findById(id)
 
-    fun crearBiblioteca(copia: Copia) = repo.save(copia)
+    fun crearCopia(copia: Copia) = repo.save(copia)
 
-    fun editarBiblioteca(copia: Copia) = repo.save(copia)
+    fun editarCopia(copia: Copia) = repo.save(copia)
 
-    fun eliminarBiblioteca(id: UUID) = repo.deleteById(id)
+    fun eliminarCopia(id: UUID) = repo.deleteById(id)
 }

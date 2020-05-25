@@ -64,8 +64,8 @@ class MyCopiaRecyclerViewAdapter() : RecyclerView.Adapter<MyCopiaRecyclerViewAda
 
     override fun getItemCount(): Int = copias.size
 
-    fun setData(bibliotecas: List<Copia>?) {
-        this.copias = bibliotecas!!
+    fun setData(copias: List<Copia>?) {
+        this.copias = copias!!
         notifyDataSetChanged()
     }
 

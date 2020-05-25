@@ -13,9 +13,9 @@
 
     <fragment
         android:id="@+id/navigation_reservas"
-        android:name="com.santiagorodriguezalberto.bookazonapp.ui.navigation.dashboard.DashboardFragment"
+        android:name="com.santiagorodriguezalberto.bookazonapp.ui.reserva.list.ReservaFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_reserva_list" />
 
     <fragment
         android:id="@+id/navigation_profile"

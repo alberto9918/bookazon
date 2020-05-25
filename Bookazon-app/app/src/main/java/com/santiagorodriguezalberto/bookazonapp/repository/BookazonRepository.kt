@@ -12,6 +12,7 @@ import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.SharedPreferencesManager
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
 import com.santiagorodriguezalberto.bookazonapp.model.Copia
+import com.santiagorodriguezalberto.bookazonapp.model.Reserva
 import com.santiagorodriguezalberto.bookazonapp.model.Usuario
 import retrofit2.Call
 import retrofit2.Callback
@@ -29,6 +30,11 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
 
     var copias: MutableLiveData<List<Copia>> = MutableLiveData()
     var copia: MutableLiveData<Copia> = MutableLiveData()
+
+    var reservas: MutableLiveData<List<Reserva>> = MutableLiveData()
+    var reserva: MutableLiveData<Reserva> = MutableLiveData()
+
+    //REGISTRO Y LOGIN
 
     fun doLogin(request: LoginRequest): MutableLiveData<Usuario> {
         val call: Call<LoginResponse>? = bookazonService.doLogin(request)
@@ -100,6 +106,8 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
         return  newUser
     }
 
+    //METODOS DE BIBLIOTECA
+
     fun getAllBibliotecas(): MutableLiveData<List<Biblioteca>> {
         val call: Call<List<Biblioteca>>? = bookazonService.getBibliotecas()
 
@@ -153,6 +161,8 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
         return biblioteca
     }
 
+    //METODOS DE COPIA
+
     fun getCopiasByBibliotecaName(biblioteca_name: String): MutableLiveData<List<Copia>> {
         val call: Call<List<Copia>>? = bookazonService.getCopiasByBiblioteca(biblioteca_name)
 
@@ -188,4 +198,53 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
         return copia
     }
 
+    //METODOS DE RESERVA
+
+    fun getReservasByUser(): MutableLiveData<List<Reserva>> {
+        val call: Call<List<Reserva>>? = bookazonService.getReservasByUser()
+
+        call?.enqueue(object : Callback<List<Reserva>> {
+            override fun onResponse(call: Call<List<Reserva>>, response: Response<List<Reserva>>) {
+                if (response.isSuccessful) reservas.value = response.body()
+            }
+
+            override fun onFailure(call: Call<List<Reserva>>, t: Throwable) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "ERROR AL LISTAR LAS RESERVAS", Toast.LENGTH_SHORT).show()
+            }
+        })
+        return reservas
+    }
+
+    fun getReservaByCopia(id: String): MutableLiveData<Reserva> {
+        val call: Call<Reserva>? = bookazonService.getReservaByCopia(id)
+
+        call?.enqueue(object : Callback<Reserva> {
+            override fun onResponse(call: Call<Reserva>, response: Response<Reserva>) {
+                if (response.isSuccessful) reserva.value = response.body()
+            }
+
+            override fun onFailure(call: Call<Reserva>, t: Throwable) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "ERROR AL BUSCAR UNA RESERVA DE UNA COPIA", Toast.LENGTH_SHORT).show()
+            }
+        })
+        return reserva
+    }
+
+    fun newReserva(id: String): MutableLiveData<Reserva> {
+        val call: Call<Reserva>? = bookazonService.doReserva(id)
+
+        call?.enqueue(object : Callback<Reserva> {
+            override fun onResponse(call: Call<Reserva>, response: Response<Reserva>) {
+                if (response.isSuccessful) reserva.value = response.body()
+            }
+
+            override fun onFailure(call: Call<Reserva>, t: Throwable) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "ERROR AL CREAR UNA RESERVA", Toast.LENGTH_SHORT).show()
+            }
+        })
+        return reserva
+    }
 }

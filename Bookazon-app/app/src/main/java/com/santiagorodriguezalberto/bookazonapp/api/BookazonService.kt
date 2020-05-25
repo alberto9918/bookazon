@@ -6,6 +6,7 @@ import com.santiagorodriguezalberto.bookazonapp.api.request.RegisterRequest
 import com.santiagorodriguezalberto.bookazonapp.api.response.LoginResponse
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
 import com.santiagorodriguezalberto.bookazonapp.model.Copia
+import com.santiagorodriguezalberto.bookazonapp.model.Reserva
 import com.santiagorodriguezalberto.bookazonapp.model.Usuario
 import retrofit2.Call
 import retrofit2.http.*
@@ -28,6 +29,15 @@ interface BookazonService {
 
     @GET("/copias/{id}")
     fun getCopia(@Path("id") id: String): Call<Copia>
+
+    @GET("/reservas/")
+    fun getReservasByUser(): Call<List<Reserva>>
+
+    @GET("/reservas/reserva/{id_copia}")
+    fun getReservaByCopia(@Path("id_copia") id: String): Call<Reserva>
+
+    @POST("/reservas/{id_copia}")
+    fun doReserva(@Path("id_copia") id: String): Call<Reserva>
 
 
 }

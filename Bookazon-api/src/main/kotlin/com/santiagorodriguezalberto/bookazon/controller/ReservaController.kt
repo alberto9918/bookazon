@@ -1,6 +1,7 @@
 package com.santiagorodriguezalberto.bookazon.controller
 
 import com.santiagorodriguezalberto.bookazon.dtos.*
+import com.santiagorodriguezalberto.bookazon.entity.Reserva
 import com.santiagorodriguezalberto.bookazon.entity.Usuario
 import com.santiagorodriguezalberto.bookazon.service.CopiaService
 import com.santiagorodriguezalberto.bookazon.service.ReservaService
@@ -26,14 +27,17 @@ class ReservaController(
 
         val result = reservaService.crearReserva(nuevaReserva.toReserva(user)).toReservaDTO()
 
-        if(result != null) return ResponseEntity<ReservaDTO>(result, HttpStatus.CREATED)
-        else throw ResponseStatusException(
-                HttpStatus.BAD_REQUEST, "No se ha creado la reserva para la copia $idCopia")
+        if(result != null){
+            copia.esta_reservada = true
+            copiaService.editarCopia(copia)
+
+            return ResponseEntity<ReservaDTO>(result, HttpStatus.CREATED)
+        }
+        else throw ResponseStatusException(HttpStatus.BAD_REQUEST, "No se ha creado la reserva para la copia $idCopia")
     }
 
-    //CREAR METODO PARA BUSCAR UNA RESERVA POR ID DE COPIA
-    @GetMapping("/{idCopia}")
-    fun getCopia(@PathVariable idCopia: UUID): ReservaDTO {
+    @GetMapping("/reserva/{idCopia}")
+    fun getReservaByCopia(@PathVariable idCopia: UUID): ReservaDTO {
 
         val copia = copiaService.findById(idCopia).get()
 
@@ -41,5 +45,15 @@ class ReservaController(
 
         if (result.isPresent) return result.get().toReservaDTO()
         else throw ResponseStatusException(HttpStatus.NOT_FOUND, "No se ha encontrado una reserva para la copia $idCopia")
+    }
+
+    @GetMapping("/")
+    fun getReservasByUser(@AuthenticationPrincipal user: Usuario): List<ReservaDTO> {
+        val result: List<Reserva> = reservaService.findAllByUsuario(user)
+
+        if (result.isNotEmpty()) return result.map {
+            it.toReservaDTO()
+        }
+        else throw ResponseStatusException(HttpStatus.NO_CONTENT, "No hay reservas para este usuario")
     }
 }

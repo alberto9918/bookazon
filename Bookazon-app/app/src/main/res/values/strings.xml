@@ -36,4 +36,6 @@
     <string name="img_description">image</string>
     <string name="btn_reservar">RESERVAR</string>
     <string name="copy_resumen">Resumen</string>
+    <string name="tv_biblioteca">Biblioteca</string>
+    <string name="tv_fechaReserva">Fecha de reserva</string>
 </resources>
