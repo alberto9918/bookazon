@@ -10,4 +10,6 @@ import java.util.*
 interface ReservaRepository: JpaRepository<Reserva,UUID> {
 
     fun findAllByUsuario(usuario: Usuario): List<Reserva>
+
+    fun findByCopia(copia: Copia): Optional<Reserva>
 }

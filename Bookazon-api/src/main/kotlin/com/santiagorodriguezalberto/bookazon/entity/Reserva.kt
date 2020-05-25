@@ -9,9 +9,6 @@ import javax.validation.constraints.NotEmpty
 @Entity
 @Table(name = "Reserva")
 data class Reserva(
-        @Id
-        @GeneratedValue
-        val id: UUID? = null,
 
         @OneToOne(fetch = FetchType.LAZY)
         @JoinColumn(name = "copia_id")
@@ -21,6 +18,10 @@ data class Reserva(
         var usuario: Usuario,
 
         @NotEmpty
-        var fecha_reserva: LocalDateTime
+        var fecha_reserva: LocalDateTime,
+
+        @Id
+        @GeneratedValue
+        val id: UUID? = null
 ) {
 }

@@ -34,9 +34,7 @@ data class CopiaDTO(
 
         var biblioteca: Biblioteca,
 
-        var reserva: Reserva? = null,
-
         val id: UUID? = null
 )
 
-fun Copia.toCopiaDTO() = CopiaDTO(titulo, autor, resumen, genero, isbn, editorial, imagen, numero_copia, esta_reservada, biblioteca, reserva, id)
+fun Copia.toCopiaDTO() = CopiaDTO(titulo, autor, resumen, genero, isbn, editorial, imagen, numero_copia, esta_reservada, biblioteca, id)

@@ -18,6 +18,8 @@ class ReservaService(
 
     fun findById(id : UUID) = repo.findById(id)
 
+    fun findByCopia(copia: Copia) = repo.findByCopia(copia)//CONTINUAR POR AQUI
+
     fun crearReserva(reserva: Reserva) = repo.save(reserva)
 
     fun editarReserva(reserva: Reserva) = repo.save(reserva)

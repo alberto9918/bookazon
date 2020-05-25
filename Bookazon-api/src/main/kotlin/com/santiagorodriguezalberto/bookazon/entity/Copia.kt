@@ -42,10 +42,10 @@ data class Copia(
         var esta_reservada: Boolean = false,
 
         @JsonBackReference @ManyToOne @NotEmpty
-        var biblioteca: Biblioteca,
+        var biblioteca: Biblioteca
 
-        @OneToOne(mappedBy = "copia", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
-        var reserva: Reserva? = null
+        /*@OneToOne(mappedBy = "copia", cascade = [CascadeType.ALL], orphanRemoval = true, fetch = FetchType.LAZY)
+        var reserva: Reserva? = null*/
 
 
 ): Libro(titulo,autor, resumen, genero,isbn,editorial,imagen) {
