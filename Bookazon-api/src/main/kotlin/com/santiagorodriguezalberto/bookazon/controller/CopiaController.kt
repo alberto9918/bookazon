@@ -35,7 +35,7 @@ class CopiaController(
 
     @GetMapping("/biblioteca/{biblioteca_name}")
     fun getCopias(@PathVariable biblioteca_name: String) = allCopias(biblioteca_name).map {
-        it
+        it.toCopiaDTO()
     }
 
     @GetMapping("/{id}")

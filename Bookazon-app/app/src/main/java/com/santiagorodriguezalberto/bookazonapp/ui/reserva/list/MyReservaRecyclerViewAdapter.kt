@@ -37,7 +37,7 @@ class MyReservaRecyclerViewAdapter() : RecyclerView.Adapter<MyReservaRecyclerVie
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = reservas[position]
         holder.titulo_copia.text = item.copia.titulo
-        holder.biblioteca_reserva.text = item.copia.editorial
+        holder.biblioteca_reserva.text = item.copia.biblioteca.nombre
         holder.fecha_reserva.text = item.fecha_reserva
 
         holder.imagen.load(item.copia.imagen){

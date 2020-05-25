@@ -9,7 +9,7 @@ import java.util.*
 
 data class ReservaDTO(
 
-        var copia: Copia,
+        var copia: CopiaDTO,
 
         var usuario: Usuario,
 
@@ -19,7 +19,7 @@ data class ReservaDTO(
 
 )
 
-fun Reserva.toReservaDTO() = ReservaDTO(copia, usuario, fecha_reserva, id)
+fun Reserva.toReservaDTO() = ReservaDTO(copia.toCopiaDTO(), usuario, fecha_reserva, id)
 
 data class NuevaReservaDTO(
         var copia: Copia,
