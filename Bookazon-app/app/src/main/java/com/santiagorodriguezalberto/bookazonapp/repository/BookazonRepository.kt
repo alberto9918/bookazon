@@ -34,7 +34,7 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
     var reservas: MutableLiveData<List<Reserva>> = MutableLiveData()
     var reserva: MutableLiveData<Reserva> = MutableLiveData()
 
-    //REGISTRO Y LOGIN
+    //REGISTRO, LOGIN Y DETALLE DE USER
 
     fun doLogin(request: LoginRequest): MutableLiveData<Usuario> {
         val call: Call<LoginResponse>? = bookazonService.doLogin(request)
@@ -104,6 +104,22 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
         })
 
         return  newUser
+    }
+
+    fun getUsuario(): MutableLiveData<Usuario> {
+        val call: Call<Usuario>? = bookazonService.getUser()
+
+        call?.enqueue(object : Callback<Usuario> {
+            override fun onResponse(call: Call<Usuario>, response: Response<Usuario>) {
+                if (response.isSuccessful) user.value = response.body()
+            }
+
+            override fun onFailure(call: Call<Usuario>, t: Throwable) {
+                Log.e("NetworkFailure", t.message)
+                Toast.makeText(MyApp.instance, "ERROR AL OBTENER LOS DATOS DEL USUARIO", Toast.LENGTH_SHORT).show()
+            }
+        })
+        return user
     }
 
     //METODOS DE BIBLIOTECA

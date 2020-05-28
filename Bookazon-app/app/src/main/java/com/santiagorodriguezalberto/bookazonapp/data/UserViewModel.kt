@@ -18,4 +18,8 @@ class UserViewModel @Inject constructor(bookazonRepository: BookazonRepository):
     fun doSignUp(request: RegisterRequest): LiveData<Usuario> {
         return repository.doSignUp(request)
     }
+
+    fun getUsuario(): LiveData<Usuario> {
+        return repository.getUsuario()
+    }
 }

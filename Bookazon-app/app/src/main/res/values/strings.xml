@@ -38,4 +38,6 @@
     <string name="copy_resumen">Resumen</string>
     <string name="tv_biblioteca">Biblioteca</string>
     <string name="tv_fechaReserva">Fecha de reserva</string>
+    <string name="completeName">Nombre y apellidos</string>
+    <string name="logout">Salir</string>
 </resources>

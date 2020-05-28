@@ -18,6 +18,9 @@ interface BookazonService {
     @POST("/user/")
     fun doSignup(@Body request: RegisterRequest): Call<Usuario>
 
+    @GET("/user/me")
+    fun getUser(): Call<Usuario>
+
     @GET("/bibliotecas/")
     fun getBibliotecas(): Call<List<Biblioteca>>
 

@@ -69,7 +69,7 @@ class WebSecurityConfiguration(
                 .authorizeRequests()
                 .antMatchers( "/h2-console/**").permitAll()
                 .antMatchers(POST, "/auth/login", "/user/").permitAll()
-                .antMatchers(GET, "/bibliotecas/**").hasRole("USER")
+                .antMatchers(GET, "/bibliotecas/**", "/user/me").hasRole("USER")
                 .antMatchers(GET, "/copias/**").hasRole("USER")
                 .antMatchers("/reservas/**").hasRole("USER")
                 .anyRequest().hasRole("ADMIN")

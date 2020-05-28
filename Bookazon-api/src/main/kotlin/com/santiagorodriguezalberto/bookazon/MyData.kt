@@ -20,7 +20,7 @@ class MyData(
     @PostConstruct
     fun initData(){
         val usuarios = listOf(
-                Usuario("Alberto","Santiago Rodríguez","albertosantiagorodriguez@gmail.com",
+                Usuario("Alberto","Santiago Rodríguez","alberto@gmail.com",
                 encoder.encode("12345678"),"12345678A",123456789, mutableSetOf("USER"))
         )
 
