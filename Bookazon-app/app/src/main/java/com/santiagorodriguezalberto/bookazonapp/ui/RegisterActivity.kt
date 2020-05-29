@@ -2,6 +2,7 @@ package com.santiagorodriguezalberto.bookazonapp.ui
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
@@ -13,6 +14,7 @@ import butterknife.ButterKnife
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.api.request.RegisterRequest
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.UserViewModel
 import java.util.regex.Pattern
 import javax.inject.Inject
@@ -77,12 +79,27 @@ class RegisterActivity : AppCompatActivity() {
                     password2 = password2.text.toString(),
                     dni = dni.text.toString(),
                     telefono = Integer.parseInt(telefono.text.toString())
-                )).observe(this, Observer {
-                    val login: Intent = Intent(MyApp.instance, MainActivity::class.java).apply {
-                        flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                ))
+
+                userViewModel.usuarioregistrado.observe(this, Observer {response ->
+
+                    when(response) {
+                        is Resource.Success ->  {
+                            val login: Intent = Intent(MyApp.instance, MainActivity::class.java).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            startActivity(login)
+                            finish()
+                        }
+
+                        is Resource.Loading -> {
+                            //CARGANDO
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                        }
                     }
-                    startActivity(login)
-                    finish()
                 })
             }
         })

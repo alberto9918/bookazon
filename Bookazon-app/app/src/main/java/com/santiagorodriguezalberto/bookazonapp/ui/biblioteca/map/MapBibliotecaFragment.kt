@@ -16,6 +16,7 @@ import com.google.android.gms.maps.model.MarkerOptions
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
 import com.santiagorodriguezalberto.bookazonapp.ui.RegisterActivity
@@ -97,16 +98,24 @@ class MapBibliotecaFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        bibliotecaViewModel.getAll().observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                listaBibliotecas = it
-                Log.d("bibliotecas2", listaBibliotecas.toString())
+        bibliotecaViewModel.getAll()
+
+        bibliotecaViewModel.bibliotecas.observe(viewLifecycleOwner, Observer {response ->
+            when(response) {
+                is Resource.Success ->  {
+                    listaBibliotecas = response.data!!
+                    Log.d("bibliotecas2", listaBibliotecas.toString())
+                }
+
+                is Resource.Loading -> {
+                    //CARGANDO
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                }
             }
         })
-
-        Log.d("bibliotecas", listaBibliotecas.toString())
-        Log.d("bibliotecas1","PRUEBA")
-
 
         return inflater.inflate(R.layout.fragment_map_biblioteca, container, false)
     }

@@ -9,10 +9,12 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Reserva
 import javax.inject.Inject
@@ -50,11 +52,22 @@ class ReservaFragment : Fragment() {
             }
         }
 
-        reservaViewModel.getReservasByUser().observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                reservas = it
-                reservaAdapter.setData(reservas)
-            }
+        reservaViewModel.getReservasByUser()
+            reservaViewModel.reservas.observe(viewLifecycleOwner, Observer {response ->
+                when(response) {
+                    is Resource.Success ->  {
+                        reservas = response.data!!
+                        reservaAdapter.setData(reservas)
+                    }
+
+                    is Resource.Loading -> {
+                        //CARGANDO
+                    }
+
+                    is Resource.Error -> {
+                        Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                    }
+                }
         })
 
         return view

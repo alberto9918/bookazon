@@ -3,11 +3,13 @@ package com.santiagorodriguezalberto.bookazonapp.ui.profile
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -18,6 +20,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.common.SharedPreferencesManager
 import com.santiagorodriguezalberto.bookazonapp.data.UserViewModel
 import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
@@ -60,26 +63,37 @@ class UserProfileFragment : Fragment() {
 
         ButterKnife.bind(this, view);
 
-        userViewModel.getUsuario().observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                nombre.text = it.nombre
-                apellidos.text = it.apellidos
-                email.text = it.email
-                dni.text = it.dni
-                telefono.text = it.telefono.toString()
+        userViewModel.getUsuario()
 
-                if(it.profileImage.isNullOrEmpty()){
-                    fotoPerfil.load(
-                        Uri.parse("file:///android_asset/avatar.png")
-                    ){
-                        transformations(CircleCropTransformation())
-                    }
-                }else{
-                    fotoPerfil.load(it.profileImage){
-                        transformations(CircleCropTransformation())
+        userViewModel.usuario.observe(viewLifecycleOwner, Observer {response ->
+            when(response) {
+                is Resource.Success ->  {
+                    nombre.text = response.data?.nombre
+                    apellidos.text = response.data?.apellidos
+                    email.text = response.data?.email
+                    dni.text = response.data?.dni
+                    telefono.text = response.data?.telefono.toString()
+
+                    if(response.data?.profileImage.isNullOrEmpty()){
+                        fotoPerfil.load(
+                            Uri.parse("file:///android_asset/avatar.png")
+                        ){
+                            transformations(CircleCropTransformation())
+                        }
+                    }else{
+                        fotoPerfil.load(response.data?.profileImage){
+                            transformations(CircleCropTransformation())
+                        }
                     }
                 }
 
+                is Resource.Loading -> {
+                    //CARGANDO
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                }
             }
         })
 

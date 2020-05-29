@@ -17,6 +17,7 @@ import coil.transform.CircleCropTransformation
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.data.CopiaViewModel
 import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
@@ -58,36 +59,59 @@ class CopiaDetailActivity : AppCompatActivity() {
 
         idCopia = intent.getStringExtra(Constantes.INTENT_DETAIL_KEYWORD_COPY_ID)
 
-        copiaViewModel.getCopia(idCopia).observe(this, Observer {
-            img_copia.load(it.imagen){
-                crossfade(true)
-            }
-            titulo.text = it.titulo
-            autor.text = it.autor
-            editorial.text = it.editorial
-            genero.text = it.genero
-            isbn.text = it.isbn
-            resumen.text = it.resumen
+        copiaViewModel.getCopia(idCopia)
+        copiaViewModel.copia.observe(this, Observer {response ->
+            when(response) {
+                is Resource.Success ->  {
+                    img_copia.load(response.data?.imagen){
+                        crossfade(true)
+                    }
+                    titulo.text = response.data?.titulo
+                    autor.text = response.data?.autor
+                    editorial.text = response.data?.editorial
+                    genero.text = response.data?.genero
+                    isbn.text = response.data?.isbn
+                    resumen.text = response.data?.resumen
 
-            esta_reservada = it.esta_reservada
+                    esta_reservada = response.data!!.esta_reservada
 
-            //FALTA AÑADIR EL METODO ONCLICK DEL BOTON
-            btn_reserva.setOnClickListener(View.OnClickListener {
+                    btn_reserva.setOnClickListener(View.OnClickListener {
 
-                if(!esta_reservada){
-                    reservaViewModel.doReserva(idCopia).observe(this, Observer {reserva ->
-                        if(reserva != null){
-                            Toast.makeText(MyApp.instance, "Reserva realizada con éxito", Toast.LENGTH_SHORT).show()
-                            esta_reservada = true
+                        if(!esta_reservada){
+                            reservaViewModel.doReserva(idCopia)
+
+                            reservaViewModel.reserva.observe(this, Observer {response ->
+                                when(response) {
+                                    is Resource.Success ->  {
+                                        Toast.makeText(MyApp.instance, "Reserva realizada con éxito", Toast.LENGTH_SHORT).show()
+                                        esta_reservada = true
+                                    }
+
+                                    is Resource.Loading -> {
+                                        //CARGANDO
+                                    }
+
+                                    is Resource.Error -> {
+                                        Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                                    }
+                                }
+                            })
+
+                        }else{
+                            Toast.makeText(MyApp.instance, "Esta copia ya está reservada", Toast.LENGTH_SHORT).show()
                         }
-                    })
 
-                }else{
-                    Toast.makeText(MyApp.instance, "Esta copia ya está reservada", Toast.LENGTH_SHORT).show()
+                    })
                 }
 
-            })
+                is Resource.Loading -> {
+                    //CARGANDO
+                }
 
+                is Resource.Error -> {
+                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                }
+            }
         })
     }
 }

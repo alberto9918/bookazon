@@ -3,7 +3,9 @@ package com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.list
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +14,7 @@ import androidx.lifecycle.Observer
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
 import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
@@ -53,10 +56,21 @@ class BibliotecaFragment : Fragment() {
             }
         }
 
-        bibliotecaViewModel.getAll().observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                bibliotecas = it
-                bibliotecaAdapter.setData(bibliotecas)
+        bibliotecaViewModel.getAll()
+        bibliotecaViewModel.bibliotecas.observe(viewLifecycleOwner, Observer {response ->
+            when(response) {
+                is Resource.Success ->  {
+                    bibliotecas = response.data!!
+                    bibliotecaAdapter.setData(bibliotecas)
+                }
+
+                is Resource.Loading -> {
+                    //CARGANDO
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                }
             }
         })
         return view

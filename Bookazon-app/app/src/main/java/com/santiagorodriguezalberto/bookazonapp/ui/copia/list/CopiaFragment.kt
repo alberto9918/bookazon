@@ -14,6 +14,7 @@ import androidx.lifecycle.Observer
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.data.CopiaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
@@ -60,10 +61,22 @@ class CopiaFragment : Fragment() {
             }
         }
 
-        copiaViewModel.getCopiasByBibliotecaName(nombreBiblioteca!!).observe(viewLifecycleOwner, Observer {
-            if (it != null) {
-                copias = it
-                copiaAdapter.setData(copias)
+        copiaViewModel.getCopiasByBibliotecaName(nombreBiblioteca!!)
+
+        copiaViewModel.copias.observe(viewLifecycleOwner, Observer {response ->
+            when(response) {
+                is Resource.Success ->  {
+                    copias = response.data!!
+                    copiaAdapter.setData(copias)
+                }
+
+                is Resource.Loading -> {
+                    //CARGANDO
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                }
             }
         })
 

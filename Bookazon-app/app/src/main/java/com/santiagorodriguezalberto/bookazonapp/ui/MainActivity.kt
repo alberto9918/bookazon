@@ -6,10 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.EditText
-import android.widget.ImageView
-import android.widget.TextView
+import android.widget.*
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.ButterKnife
@@ -18,6 +15,7 @@ import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.api.request.LoginRequest
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.common.SharedPreferencesManager
 import com.santiagorodriguezalberto.bookazonapp.data.UserViewModel
 import javax.inject.Inject
@@ -70,17 +68,30 @@ class MainActivity : AppCompatActivity() {
                     password = password.text.toString()
                 )
             )
-                .observe(this, Observer {
-                    if(it==null){
-                        Log.d("LOG IN","error al loguearte")
-                    }else{
-                        Log.d("LOG IN","login con exito")
-                        val success: Intent = Intent(MyApp.instance, DashboardActivity::class.java).apply {
-                            flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            userViewModel.usuariologeado.observe(this, Observer {response ->
+                    when(response) {
+                        is Resource.Success ->  {
+                            SharedPreferencesManager().setStringValue(
+                                Constantes.SHARED_PREFERENCES_TOKEN_KEYWORD,
+                                response.data!!.token
+                            )
+                            Log.d("LOG IN","login con exito")
+                            val success: Intent = Intent(MyApp.instance, DashboardActivity::class.java).apply {
+                                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+                            }
+                            startActivity(success)
+                            finish()
                         }
-                        startActivity(success)
-                        finish()
+
+                        is Resource.Loading -> {
+                            //CARGANDO
+                        }
+
+                        is Resource.Error -> {
+                            Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                        }
                     }
+
                 })
         })
 

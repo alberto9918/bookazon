@@ -9,38 +9,42 @@ import com.santiagorodriguezalberto.bookazonapp.model.Copia
 import com.santiagorodriguezalberto.bookazonapp.model.Reserva
 import com.santiagorodriguezalberto.bookazonapp.model.Usuario
 import retrofit2.Call
+import retrofit2.Response
 import retrofit2.http.*
 
 interface BookazonService {
+    /*@POST("/auth/login")
+    fun doLogin(@Body request: LoginRequest): Call<LoginResponse>*/
+
     @POST("/auth/login")
-    fun doLogin(@Body request: LoginRequest): Call<LoginResponse>
+    suspend fun doLogin(@Body request: LoginRequest): Response<LoginResponse>
 
     @POST("/user/")
-    fun doSignup(@Body request: RegisterRequest): Call<Usuario>
+    suspend fun doSignup(@Body request: RegisterRequest): Response<Usuario>
 
     @GET("/user/me")
-    fun getUser(): Call<Usuario>
+    suspend fun getUser(): Response<Usuario>
 
     @GET("/bibliotecas/")
-    fun getBibliotecas(): Call<List<Biblioteca>>
+    suspend fun getBibliotecas(): Response<List<Biblioteca>>
 
     @GET("/bibliotecas/{nombre}")
-    fun getBibliotecaByName(@Path("nombre") nombre: String): Call<Biblioteca>
+    suspend fun getBibliotecaByName(@Path("nombre") nombre: String): Response<Biblioteca>
 
     @GET("/copias/biblioteca/{biblioteca_name}")
-    fun getCopiasByBiblioteca(@Path("biblioteca_name") biblioteca_name: String): Call<List<Copia>>
+    suspend fun getCopiasByBiblioteca(@Path("biblioteca_name") biblioteca_name: String): Response<List<Copia>>
 
     @GET("/copias/{id}")
-    fun getCopia(@Path("id") id: String): Call<Copia>
+    suspend fun getCopia(@Path("id") id: String): Response<Copia>
 
     @GET("/reservas/")
-    fun getReservasByUser(): Call<List<Reserva>>
+    suspend fun getReservasByUser(): Response<List<Reserva>>
 
     @GET("/reservas/reserva/{id_copia}")
-    fun getReservaByCopia(@Path("id_copia") id: String): Call<Reserva>
+    suspend fun getReservaByCopia(@Path("id_copia") id: String): Response<Reserva>
 
     @POST("/reservas/{id_copia}")
-    fun doReserva(@Path("id_copia") id: String): Call<Reserva>
+    suspend fun doReserva(@Path("id_copia") id: String): Response<Reserva>
 
 
 }
