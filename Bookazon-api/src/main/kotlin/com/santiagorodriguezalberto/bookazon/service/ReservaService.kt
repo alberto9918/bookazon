@@ -18,7 +18,7 @@ class ReservaService(
 
     fun findById(id : UUID) = repo.findById(id)
 
-    fun findByCopia(copia: Copia) = repo.findByCopia(copia)//CONTINUAR POR AQUI
+    fun findByCopia(copia: Copia) = repo.findByCopia(copia)
 
     fun crearReserva(reserva: Reserva) = repo.save(reserva)
 

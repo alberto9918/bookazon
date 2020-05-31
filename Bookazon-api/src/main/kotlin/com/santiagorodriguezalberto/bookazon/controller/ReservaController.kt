@@ -56,4 +56,14 @@ class ReservaController(
         }
         else throw ResponseStatusException(HttpStatus.NO_CONTENT, "No hay reservas para este usuario")
     }
+
+    @DeleteMapping("/{id}")
+    fun deleteReserva(@PathVariable id: UUID): ResponseEntity<Void> {
+        var result = reservaService.findById(id)
+        if (result.isPresent) {
+            reservaService.eliminarReserva(id)
+            return ResponseEntity.noContent().build()
+        }
+        else throw ResponseStatusException(HttpStatus.NOT_FOUND, "No se ha encontrado la reserva con el identificador $id")
+    }
 }
