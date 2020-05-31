@@ -2,6 +2,7 @@ package com.santiagorodriguezalberto.bookazonapp.ui.reserva.list
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,6 +18,8 @@ import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Reserva
+import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
+import retrofit2.Response
 import javax.inject.Inject
 
 
@@ -38,8 +41,7 @@ class ReservaFragment : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_reserva_list, container, false)
 
-
-        reservaAdapter = MyReservaRecyclerViewAdapter()
+        reservaAdapter = MyReservaRecyclerViewAdapter(reservaViewModel)
 
         // Set the adapter
         if (view is RecyclerView) {
@@ -65,10 +67,27 @@ class ReservaFragment : Fragment() {
                     }
 
                     is Resource.Error -> {
-                        Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                        Toast.makeText(MyApp.instance,"Lista vacía", Toast.LENGTH_LONG).show()
                     }
                 }
-        })
+            })
+
+        /*reservaViewModel.deleteReserva.observe(viewLifecycleOwner, Observer {response ->
+            Log.e("Response",response.data.toString())
+            when(response) {
+                is Resource.Success ->  {
+                    reservaViewModel.getReservasByUser()
+                }
+
+                is Resource.Loading -> {
+                    //CARGANDO
+                }
+
+                is Resource.Error -> {
+                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                }
+            }
+        })*/
 
         return view
     }

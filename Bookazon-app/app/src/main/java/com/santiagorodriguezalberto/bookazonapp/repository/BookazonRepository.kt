@@ -22,17 +22,6 @@ import javax.inject.Singleton
 
 @Singleton
 class BookazonRepository  @Inject constructor(var bookazonService: BookazonService) {
-    var user: MutableLiveData<Usuario> = MutableLiveData()
-    var newUser: MutableLiveData<Usuario> = MutableLiveData()
-
-    var bibliotecas: MutableLiveData<List<Biblioteca>> = MutableLiveData()
-    var biblioteca: MutableLiveData<Biblioteca> = MutableLiveData()
-
-    var copias: MutableLiveData<List<Copia>> = MutableLiveData()
-    var copia: MutableLiveData<Copia> = MutableLiveData()
-
-    var reservas: MutableLiveData<List<Reserva>> = MutableLiveData()
-    var reserva: MutableLiveData<Reserva> = MutableLiveData()
 
     //REGISTRO, LOGIN Y DETALLE DE USER
 
@@ -62,4 +51,6 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
     suspend fun getReservaByCopia(id: String) = bookazonService.getReservaByCopia(id)
 
     suspend fun newReserva(id: String) = bookazonService.doReserva(id)
+
+    suspend fun deleteReserva(id: String) = bookazonService.deleteReserva(id)
 }

@@ -40,4 +40,5 @@
     <string name="tv_fechaReserva">Fecha de reserva</string>
     <string name="completeName">Nombre y apellidos</string>
     <string name="logout">Salir</string>
+    <string name="deleteReserva">ELIMINAR RESERVA</string>
 </resources>

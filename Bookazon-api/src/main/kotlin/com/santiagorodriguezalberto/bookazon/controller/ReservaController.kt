@@ -60,7 +60,12 @@ class ReservaController(
     @DeleteMapping("/{id}")
     fun deleteReserva(@PathVariable id: UUID): ResponseEntity<Void> {
         var result = reservaService.findById(id)
+
         if (result.isPresent) {
+
+            result.get().copia.esta_reservada = false
+            copiaService.editarCopia(result.get().copia)
+
             reservaService.eliminarReserva(id)
             return ResponseEntity.noContent().build()
         }

@@ -12,7 +12,7 @@ data class Copia(
     val editorial: String,
     val imagen: String,
     val numero_copia: Int,
-    val esta_reservada: Boolean,
+    var esta_reservada: Boolean,
     val biblioteca: Biblioteca,
     val id: UUID
 

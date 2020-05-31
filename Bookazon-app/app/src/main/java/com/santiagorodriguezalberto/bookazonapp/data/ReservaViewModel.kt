@@ -17,6 +17,7 @@ class ReservaViewModel @Inject constructor(bookazonRepository: BookazonRepositor
 
     var reservas: MutableLiveData<Resource<List<Reserva>>> = MutableLiveData()
     var reserva: MutableLiveData<Resource<Reserva>> = MutableLiveData()
+    var deleteReserva: MutableLiveData<Resource<Void>> = MutableLiveData()
 
     fun getReservasByUser() = viewModelScope.launch {
         reservas.value = Resource.Loading()
@@ -39,6 +40,15 @@ class ReservaViewModel @Inject constructor(bookazonRepository: BookazonRepositor
         reserva.value = handleReserva(response)
     }
 
+    fun deleteReserva(id:String)= viewModelScope.launch {
+        deleteReserva.value = Resource.Loading()
+        val response = repository.deleteReserva(id)
+
+        deleteReserva.value = handleDeleteReserva(response)
+    }
+
+
+
     private fun handleListReservas(response: Response<List<Reserva>>): Resource<List<Reserva>>? {
         if(response.isSuccessful) {
             response.body()?.let {
@@ -53,6 +63,16 @@ class ReservaViewModel @Inject constructor(bookazonRepository: BookazonRepositor
             response.body()?.let {
                 return Resource.Success(it)
             }
+        }
+        return Resource.Error(response.message())
+    }
+
+    private fun handleDeleteReserva(response: Response<Void>): Resource<Void>? {
+        if(response.isSuccessful) {
+            response.body()?.let {
+                return Resource.Success(it)
+            }
+
         }
         return Resource.Error(response.message())
     }

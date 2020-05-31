@@ -1,20 +1,32 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.reserva.list
 
+import android.content.Intent
 import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
+import android.widget.Toast
+import androidx.lifecycle.Observer
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
+import com.santiagorodriguezalberto.bookazonapp.common.MyApp
+import com.santiagorodriguezalberto.bookazonapp.common.Resource
+import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Reserva
+import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
+import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
 
 import kotlinx.android.synthetic.main.fragment_reserva.view.*
+import javax.inject.Inject
 
-class MyReservaRecyclerViewAdapter() : RecyclerView.Adapter<MyReservaRecyclerViewAdapter.ViewHolder>() {
+class MyReservaRecyclerViewAdapter(
+    val reservaViewModel: ReservaViewModel
+) : RecyclerView.Adapter<MyReservaRecyclerViewAdapter.ViewHolder>() {
     private var reservas: List<Reserva> = ArrayList()
     private val mOnClickListener: View.OnClickListener
 
@@ -48,6 +60,18 @@ class MyReservaRecyclerViewAdapter() : RecyclerView.Adapter<MyReservaRecyclerVie
             tag = item
             setOnClickListener(mOnClickListener)
         }
+
+        holder.btn_delete.setOnClickListener{
+            reservaViewModel.deleteReserva(item.id.toString())
+
+            var i = Intent(MyApp.instance, DashboardActivity::class.java).apply {
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            MyApp.instance.startActivity(i)
+
+            Toast.makeText(MyApp.instance,"La reserva ha sido eliminada", Toast.LENGTH_SHORT).show()
+
+        }
     }
 
     override fun getItemCount(): Int = reservas.size
@@ -62,5 +86,6 @@ class MyReservaRecyclerViewAdapter() : RecyclerView.Adapter<MyReservaRecyclerVie
         val biblioteca_reserva: TextView = mView.tv_BibliotecaCopyReservada
         val fecha_reserva: TextView = mView.tv_FechaReservaCopy
         val imagen: ImageView = mView.imageViewCopyReservada
+        val btn_delete: Button = mView.btn_deleteReserva
     }
 }

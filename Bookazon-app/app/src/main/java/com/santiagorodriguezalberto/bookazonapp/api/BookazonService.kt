@@ -46,5 +46,8 @@ interface BookazonService {
     @POST("/reservas/{id_copia}")
     suspend fun doReserva(@Path("id_copia") id: String): Response<Reserva>
 
+    @DELETE("/reservas/{id}")
+    suspend fun deleteReserva(@Path("id") id: String): Response<Void>
+
 
 }

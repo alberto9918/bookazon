@@ -73,18 +73,18 @@ class CopiaDetailActivity : AppCompatActivity() {
                     isbn.text = response.data?.isbn
                     resumen.text = response.data?.resumen
 
-                    esta_reservada = response.data!!.esta_reservada
+                    //esta_reservada = response.data!!.esta_reservada
 
                     btn_reserva.setOnClickListener(View.OnClickListener {
 
-                        if(!esta_reservada){
+                        if(!response.data!!.esta_reservada){
                             reservaViewModel.doReserva(idCopia)
 
-                            reservaViewModel.reserva.observe(this, Observer {response ->
-                                when(response) {
+                            reservaViewModel.reserva.observe(this, Observer {respuesta ->
+                                when(respuesta) {
                                     is Resource.Success ->  {
                                         Toast.makeText(MyApp.instance, "Reserva realizada con éxito", Toast.LENGTH_SHORT).show()
-                                        esta_reservada = true
+                                        response.data!!.esta_reservada = true
                                     }
 
                                     is Resource.Loading -> {
