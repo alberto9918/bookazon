@@ -1,6 +1,7 @@
 package com.santiagorodriguezalberto.bookazonapp.api
 
 
+import com.santiagorodriguezalberto.bookazonapp.api.request.EditUserRequest
 import com.santiagorodriguezalberto.bookazonapp.api.request.LoginRequest
 import com.santiagorodriguezalberto.bookazonapp.api.request.RegisterRequest
 import com.santiagorodriguezalberto.bookazonapp.api.response.LoginResponse
@@ -24,6 +25,9 @@ interface BookazonService {
 
     @GET("/user/me")
     suspend fun getUser(): Response<Usuario>
+
+    @PUT("/user/edit")
+    suspend fun editNote(@Body request: EditUserRequest): Response<Usuario>
 
     @GET("/bibliotecas/")
     suspend fun getBibliotecas(): Response<List<Biblioteca>>

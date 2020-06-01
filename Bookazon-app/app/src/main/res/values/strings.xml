@@ -41,4 +41,6 @@
     <string name="completeName">Nombre y apellidos</string>
     <string name="logout">Salir</string>
     <string name="deleteReserva">ELIMINAR RESERVA</string>
+    <string name="title_map">Mapa</string>
+    <string name="editProfile">Editar tus datos</string>
 </resources>

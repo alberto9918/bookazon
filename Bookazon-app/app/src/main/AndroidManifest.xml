@@ -19,7 +19,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.copia.detail.CopiaDetailActivity"></activity>
+        <activity android:name=".ui.profile.EditUserActivity"></activity>
+        <activity android:name=".ui.copia.detail.CopiaDetailActivity" />
         <activity android:name=".ui.biblioteca.list.BibliotecaListActivity" />
         <activity android:name=".ui.biblioteca.detail.BibliotecaDetailActivity" />
         <!--

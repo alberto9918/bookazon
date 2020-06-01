@@ -1,16 +1,18 @@
 package com.santiagorodriguezalberto.bookazon.controller
 
 import com.santiagorodriguezalberto.bookazon.dtos.CreateUserDTO
+import com.santiagorodriguezalberto.bookazon.dtos.EditUserDTO
 import com.santiagorodriguezalberto.bookazon.dtos.UserDTO
 import com.santiagorodriguezalberto.bookazon.dtos.toUserDTO
+import com.santiagorodriguezalberto.bookazon.entity.Usuario
 import com.santiagorodriguezalberto.bookazon.service.UserService
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
+import org.springframework.security.core.annotation.AuthenticationPrincipal
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.*
 import org.springframework.web.server.ResponseStatusException
+import java.util.*
 
 @Controller
 @RequestMapping("/user")
@@ -23,4 +25,24 @@ class UserController(
                     .orElseThrow {
                 ResponseStatusException(HttpStatus.BAD_REQUEST, "El email ${newUser.email} ya existe")
             }
+
+    @PutMapping("/edit")
+    fun editNote(@AuthenticationPrincipal user: Usuario, @RequestBody usuarioEdit: EditUserDTO): ResponseEntity<UserDTO> {
+
+        val edited: Usuario =
+                user.copy(
+                        nombre = usuarioEdit.nombre,
+                        apellidos = usuarioEdit.apellidos,
+                        email = usuarioEdit.email,
+                        dni = usuarioEdit.dni,
+                        telefono = usuarioEdit.telefono
+                )
+
+        println(edited)
+
+        val result = userService.editarUsuario(edited).toUserDTO()
+
+        return ResponseEntity.status(HttpStatus.OK).body(result)
+
+    }
 }

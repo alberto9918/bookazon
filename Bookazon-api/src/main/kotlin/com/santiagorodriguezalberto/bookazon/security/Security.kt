@@ -70,6 +70,7 @@ class WebSecurityConfiguration(
                 .antMatchers( "/h2-console/**","/swagger-ui.html/**","/swagger-resources/**").permitAll()
                 .antMatchers(POST, "/auth/login", "/user/").permitAll()
                 .antMatchers(GET, "/bibliotecas/**", "/user/me").hasRole("USER")
+                .antMatchers(PUT, "/user/**").hasRole("USER")
                 .antMatchers(GET, "/copias/**").hasRole("USER")
                 .antMatchers("/reservas/**").hasRole("USER")
                 .anyRequest().hasRole("ADMIN")

@@ -26,4 +26,6 @@ class UserService(
     fun findByEmail(email : String) = repo.findByEmail(email)
 
     fun findById(id : UUID) = repo.findById(id)
+
+    fun editarUsuario(usuario: Usuario) = repo.save(usuario)
 }

@@ -4,6 +4,7 @@ import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.santiagorodriguezalberto.bookazonapp.api.BookazonService
+import com.santiagorodriguezalberto.bookazonapp.api.request.EditUserRequest
 import com.santiagorodriguezalberto.bookazonapp.api.request.LoginRequest
 import com.santiagorodriguezalberto.bookazonapp.api.request.RegisterRequest
 import com.santiagorodriguezalberto.bookazonapp.api.response.LoginResponse
@@ -30,6 +31,8 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
     suspend fun doSignUp(registerRequest: RegisterRequest) = bookazonService.doSignup(registerRequest)
 
     suspend fun getUsuario() = bookazonService.getUser()
+
+    suspend fun editUsuario(editUserRequest: EditUserRequest) = bookazonService.editNote(editUserRequest)
 
     //METODOS DE BIBLIOTECA
 

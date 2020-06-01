@@ -27,3 +27,11 @@ data class CreateUserDTO(
         val dni: String,
         val telefono: Int
 )
+
+data class EditUserDTO(
+        var nombre: String,
+        var apellidos: String,
+        val email: String,
+        val dni: String,
+        val telefono: Int
+)

@@ -97,6 +97,13 @@ class UserProfileFragment : Fragment() {
             }
         })
 
+        btn_editProfile.setOnClickListener{
+            val edit: Intent = Intent(MyApp.instance, EditUserActivity::class.java).apply{
+                flags = Intent.FLAG_ACTIVITY_NEW_TASK
+            }
+            startActivity(edit)
+        }
+
         return view
     }
 

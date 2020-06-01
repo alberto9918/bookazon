@@ -8,18 +8,18 @@
     <fragment
         android:id="@+id/navigation_bibliotecas"
         android:name="com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.map.MapBibliotecaFragment"
-        android:label="@string/title_home"
+        android:label="@string/title_map"
         tools:layout="@layout/fragment_map_biblioteca" />
 
     <fragment
         android:id="@+id/navigation_reservas"
         android:name="com.santiagorodriguezalberto.bookazonapp.ui.reserva.list.ReservaFragment"
-        android:label="@string/title_dashboard"
+        android:label="@string/title_reservas"
         tools:layout="@layout/fragment_reserva_list" />
 
     <fragment
         android:id="@+id/navigation_profile"
         android:name="com.santiagorodriguezalberto.bookazonapp.ui.profile.UserProfileFragment"
-        android:label="@string/title_notifications"
+        android:label="@string/title_profile"
         tools:layout="@layout/fragment_user_profile" />
 </navigation>

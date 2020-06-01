@@ -9,6 +9,7 @@ import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.list.BibliotecaFra
 import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.map.MapBibliotecaFragment
 import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.copia.list.CopiaFragment
+import com.santiagorodriguezalberto.bookazonapp.ui.profile.EditUserActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.profile.UserProfileFragment
 import com.santiagorodriguezalberto.bookazonapp.ui.reserva.list.ReservaFragment
 import dagger.Component
@@ -26,5 +27,6 @@ interface ApplicationComponent {
     fun inject(copiaDetailActivity: CopiaDetailActivity)
     fun inject(reservaFragment: ReservaFragment)
     fun inject(userProfileFragment: UserProfileFragment)
+    fun inject(editUserActivity: EditUserActivity)
     fun inject(mapBibliotecaFragment: MapBibliotecaFragment)
 }

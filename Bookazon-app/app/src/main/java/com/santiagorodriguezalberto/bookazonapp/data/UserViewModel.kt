@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.santiagorodriguezalberto.bookazonapp.api.request.EditUserRequest
 import com.santiagorodriguezalberto.bookazonapp.api.request.LoginRequest
 import com.santiagorodriguezalberto.bookazonapp.api.request.RegisterRequest
 import com.santiagorodriguezalberto.bookazonapp.api.response.LoginResponse
@@ -39,6 +40,13 @@ class UserViewModel @Inject constructor(bookazonRepository: BookazonRepository):
     fun getUsuario() = viewModelScope.launch {
         usuario.value = Resource.Loading()
         val response = repository.getUsuario()
+
+        usuario.value = handleUserSignedUp(response)
+    }
+
+    fun editUsuario(request: EditUserRequest) = viewModelScope.launch {
+        usuario.value = Resource.Loading()
+        val response = repository.editUsuario(request)
 
         usuario.value = handleUserSignedUp(response)
     }
