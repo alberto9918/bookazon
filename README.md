@@ -3,7 +3,7 @@
 Este proyecto consiste en una app que permitirá al usuario reservar un libro en la biblioteca más cercana(o en la que desee).
 Para ello el usuario, una vez registrado en la app, podráacceder a un mapa en donde se mostrarán las bibliotecas más cercanas a él, y al pulsar en una de ellas, tendrá acceso a la lista de libros que dispone esa biblioteca. Al pulsar en uno de los libros de la lista, podrá acceder a sus detalles, y desde ahí podrá pulsar un botón con el que reservará el libro.
 Esta reserva quedará registrada en la lista de reservas que tendrá el usuario, con la posibilidad de cancelar la reserva en cualquier momento.
-Cuando el usuario está en la lista de libros de una biblioteca, tendrá la posibilidad de filtrar esos libros, ya sea mediante el género del libro o buscando directamente el nombre de un libro concreto.
+Cuando el usuario está en la lista de libros de una biblioteca, tendrá la posibilidad de filtrar esos libros, ya sea mediante el género del libro o por su autor.
 
 
 ## Usuarios de prueba
