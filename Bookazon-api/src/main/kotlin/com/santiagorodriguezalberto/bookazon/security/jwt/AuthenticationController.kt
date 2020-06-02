@@ -3,6 +3,7 @@ package com.santiagorodriguezalberto.bookazon.security.jwt
 import com.santiagorodriguezalberto.bookazon.dtos.UserDTO
 import com.santiagorodriguezalberto.bookazon.dtos.toUserDTO
 import com.santiagorodriguezalberto.bookazon.entity.Usuario
+import io.swagger.annotations.ApiOperation
 
 import org.springframework.security.access.prepost.PreAuthorize
 import org.springframework.security.authentication.AuthenticationManager
@@ -23,6 +24,8 @@ class AuthenticationController(
 ) {
 
     @PostMapping("/auth/login")
+    @ApiOperation(value = "Método para loguearte en la aplicación",
+            notes = "Devuelve el usuario(si existe) con un token con el que poder acceder a los métodos")
     fun login(@Valid @RequestBody loginRequest : LoginRequest) : JwtUserResponse {
         val authentication = authenticationManager.authenticate(
                 UsernamePasswordAuthenticationToken(
@@ -41,6 +44,7 @@ class AuthenticationController(
 
     @PreAuthorize("isAuthenticated()")
     @GetMapping("/user/me")
+    @ApiOperation(value = "Obtiene el usuario que está logueado en ese momento")
     fun me(@AuthenticationPrincipal user : Usuario) = user.toUserDTO()
 
 

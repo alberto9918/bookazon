@@ -6,6 +6,7 @@ import com.santiagorodriguezalberto.bookazon.dtos.UserDTO
 import com.santiagorodriguezalberto.bookazon.dtos.toUserDTO
 import com.santiagorodriguezalberto.bookazon.entity.Usuario
 import com.santiagorodriguezalberto.bookazon.service.UserService
+import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -20,6 +21,7 @@ class UserController(
         val userService: UserService
 ) {
     @PostMapping("/")
+    @ApiOperation(value = "Registra(crea) un nuevo usuario")
     fun nuevoUsuario(@RequestBody newUser : CreateUserDTO): ResponseEntity<UserDTO> =
             userService.create(newUser).map { ResponseEntity.status(HttpStatus.CREATED).body(it.toUserDTO()) }
                     .orElseThrow {
@@ -27,6 +29,7 @@ class UserController(
             }
 
     @PutMapping("/edit")
+    @ApiOperation(value = "Edita los datos del usuario que está logueado en ese momento")
     fun editNote(@AuthenticationPrincipal user: Usuario, @RequestBody usuarioEdit: EditUserDTO): ResponseEntity<UserDTO> {
 
         val edited: Usuario =

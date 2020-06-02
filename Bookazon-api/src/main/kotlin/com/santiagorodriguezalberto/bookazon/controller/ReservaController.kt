@@ -5,6 +5,7 @@ import com.santiagorodriguezalberto.bookazon.entity.Reserva
 import com.santiagorodriguezalberto.bookazon.entity.Usuario
 import com.santiagorodriguezalberto.bookazon.service.CopiaService
 import com.santiagorodriguezalberto.bookazon.service.ReservaService
+import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -19,6 +20,8 @@ class ReservaController(
         val copiaService: CopiaService
 ) {
     @PostMapping("/{idCopia}")
+    @ApiOperation(value = "Crea una reserva, pasando como parámetros el id de la copia que se quiere añadir a la reserva," +
+            "y el usuario que está logueado en ese momento")
     fun crearReserva(@PathVariable idCopia: UUID, @AuthenticationPrincipal user :Usuario): ResponseEntity<*> {
 
         val copia = copiaService.findById(idCopia).get()
@@ -37,6 +40,7 @@ class ReservaController(
     }
 
     @GetMapping("/reserva/{idCopia}")
+    @ApiOperation(value = "Devuelve una reserva que contenga la copia cuyo id coincide con el que se ha pasado por parámetro")
     fun getReservaByCopia(@PathVariable idCopia: UUID): ReservaDTO {
 
         val copia = copiaService.findById(idCopia).get()
@@ -48,6 +52,7 @@ class ReservaController(
     }
 
     @GetMapping("/")
+    @ApiOperation(value = "Devuelve todas las reservas del usuario que está logueado")
     fun getReservasByUser(@AuthenticationPrincipal user: Usuario): List<ReservaDTO> {
         val result: List<Reserva> = reservaService.findAllByUsuario(user)
 
@@ -58,6 +63,7 @@ class ReservaController(
     }
 
     @DeleteMapping("/{id}")
+    @ApiOperation(value = "Elimina la reserva cuyo id coincide con el que se ha pasado como parámetro")
     fun deleteReserva(@PathVariable id: UUID): ResponseEntity<Void> {
         var result = reservaService.findById(id)
 

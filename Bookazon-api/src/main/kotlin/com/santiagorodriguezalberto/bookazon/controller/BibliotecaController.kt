@@ -4,6 +4,7 @@ import com.santiagorodriguezalberto.bookazon.dtos.BibliotecaDTO
 import com.santiagorodriguezalberto.bookazon.dtos.toBibliotecaDTO
 import com.santiagorodriguezalberto.bookazon.entity.Biblioteca
 import com.santiagorodriguezalberto.bookazon.service.BibliotecaService
+import io.swagger.annotations.ApiOperation
 import org.springframework.data.jpa.domain.AbstractPersistable_.id
 import org.springframework.http.HttpStatus
 import org.springframework.security.core.annotation.AuthenticationPrincipal
@@ -41,11 +42,13 @@ class BibliotecaController(
     }
 
     @GetMapping("/")
+    @ApiOperation(value = "Devuelve una lista con todas las bibliotecas que hay")
     fun getBibliotecas() = allBibliotecas().map {
         it
     }
 
     @GetMapping("/{nombre}")
-    fun getNota(@PathVariable nombre: String) = oneBiblioteca(nombre)
+    @ApiOperation(value = "Devuelve la biblioteca cuyo nombre sea el que se ha pasado como parámetro")
+    fun getBiblioteca(@PathVariable nombre: String) = oneBiblioteca(nombre)
 
 }

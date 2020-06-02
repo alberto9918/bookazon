@@ -8,6 +8,7 @@ import com.santiagorodriguezalberto.bookazon.entity.Biblioteca
 import com.santiagorodriguezalberto.bookazon.entity.Copia
 import com.santiagorodriguezalberto.bookazon.service.BibliotecaService
 import com.santiagorodriguezalberto.bookazon.service.CopiaService
+import io.swagger.annotations.ApiOperation
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
@@ -34,11 +35,13 @@ class CopiaController(
 
 
     @GetMapping("/biblioteca/{biblioteca_name}")
+    @ApiOperation(value = "Deveulve una lista con todas las copias de la biblioteca que como nombre tiene el que se le ha pasado por parámetro")
     fun getCopias(@PathVariable biblioteca_name: String) = allCopias(biblioteca_name).map {
         it.toCopiaDTO()
     }
 
     @GetMapping("/{id}")
+    @ApiOperation(value = "Devuelve una copia cuyo id coincide con el que se ha pasado como parámetro")
     fun getCopia(@PathVariable id: UUID): CopiaDTO {
         var result = copiaService.findById(id)
 
