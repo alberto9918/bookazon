@@ -43,4 +43,6 @@
     <string name="deleteReserva">ELIMINAR RESERVA</string>
     <string name="title_map">Mapa</string>
     <string name="editProfile">Editar tus datos</string>
+    <string name="genre">Generos</string>
+    <string name="authors">Autores</string>
 </resources>

@@ -16,6 +16,14 @@ class CopiaService(
 
     fun findById(id : UUID) = repo.findById(id)
 
+    fun findGeneros(biblioteca_name: String) = repo.findGeneros(biblioteca_name)
+
+    fun findCopiasByGenero(biblioteca_name: String, genero: String) = repo.findCopiasByGenero(biblioteca_name, genero)
+
+    fun findAutores(biblioteca_name: String) = repo.findAutores(biblioteca_name)
+
+    fun findCopiasByAutor(biblioteca_name: String, autor: String) = repo.findCopiasByAutor(biblioteca_name, autor)
+
     fun crearCopia(copia: Copia) = repo.save(copia)
 
     fun editarCopia(copia: Copia) = repo.save(copia)

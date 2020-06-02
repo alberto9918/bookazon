@@ -32,7 +32,7 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
 
     suspend fun getUsuario() = bookazonService.getUser()
 
-    suspend fun editUsuario(editUserRequest: EditUserRequest) = bookazonService.editNote(editUserRequest)
+    suspend fun editUsuario(editUserRequest: EditUserRequest) = bookazonService.editUsuario(editUserRequest)
 
     //METODOS DE BIBLIOTECA
 
@@ -46,6 +46,14 @@ class BookazonRepository  @Inject constructor(var bookazonService: BookazonServi
     suspend fun getCopiasByBibliotecaName(biblioteca_name: String) = bookazonService.getCopiasByBiblioteca(biblioteca_name)
 
     suspend fun getCopia(id: String) = bookazonService.getCopia(id)
+
+    suspend fun getGeneros(biblioteca_name: String) = bookazonService.getGeneros(biblioteca_name)
+
+    suspend fun getAutores(biblioteca_name: String) = bookazonService.getAutores(biblioteca_name)
+
+    suspend fun getCopiasByGenero(biblioteca_name: String, genero: String) = bookazonService.getCopiasByGenero(biblioteca_name, genero)
+
+    suspend fun getCopiasByAutor(biblioteca_name: String, autor: String) = bookazonService.getCopiasByAutor(biblioteca_name, autor)
 
     //METODOS DE RESERVA
 
