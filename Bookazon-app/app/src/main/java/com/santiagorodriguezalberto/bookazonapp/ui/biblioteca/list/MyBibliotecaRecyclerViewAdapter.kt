@@ -5,8 +5,11 @@ import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import coil.api.load
+import coil.transform.CircleCropTransformation
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
@@ -47,6 +50,10 @@ class MyBibliotecaRecyclerViewAdapter() : RecyclerView.Adapter<MyBibliotecaRecyc
         val item = bibliotecas[position]
         holder.nombre_biblioteca.text = item.nombre
 
+        holder.bibliotecaImage.load("file:///android_asset/biblioteca.png"){
+            transformations(CircleCropTransformation())
+        }
+
         with(holder.mView) {
             tag = item
             setOnClickListener(mOnClickListener)
@@ -62,6 +69,7 @@ class MyBibliotecaRecyclerViewAdapter() : RecyclerView.Adapter<MyBibliotecaRecyc
 
     inner class ViewHolder(val mView: View) : RecyclerView.ViewHolder(mView) {
         val nombre_biblioteca: TextView = mView.tv_biblioteca
+        val bibliotecaImage: ImageView = mView.iv_bibliotecaImg
 
     }
 }

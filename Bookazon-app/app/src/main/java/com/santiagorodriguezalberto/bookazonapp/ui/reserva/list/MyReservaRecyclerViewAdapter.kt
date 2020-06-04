@@ -22,6 +22,7 @@ import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
 
 import kotlinx.android.synthetic.main.fragment_reserva.view.*
+import java.time.LocalDate
 import javax.inject.Inject
 
 class MyReservaRecyclerViewAdapter(
@@ -48,9 +49,10 @@ class MyReservaRecyclerViewAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val item = reservas[position]
+        val fechaReserva = LocalDate.parse(item.fecha_reserva.substring(0,10))
         holder.titulo_copia.text = item.copia.titulo
         holder.biblioteca_reserva.text = item.copia.biblioteca.nombre
-        holder.fecha_reserva.text = item.fecha_reserva
+        holder.fecha_reserva.text = fechaReserva.toString()
 
         holder.imagen.load(item.copia.imagen){
             transformations(CircleCropTransformation())
@@ -88,4 +90,5 @@ class MyReservaRecyclerViewAdapter(
         val imagen: ImageView = mView.imageViewCopyReservada
         val btn_delete: Button = mView.btn_deleteReserva
     }
+
 }
