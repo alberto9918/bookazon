@@ -1,24 +1,20 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.copia.detail
 
-import android.content.Intent
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.ButterKnife
 import coil.api.load
-import coil.transform.CircleCropTransformation
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
-import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.data.CopiaViewModel
 import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
 import javax.inject.Inject
@@ -72,8 +68,6 @@ class CopiaDetailActivity : AppCompatActivity() {
                     genero.text = response.data?.genero
                     isbn.text = response.data?.isbn
                     resumen.text = response.data?.resumen
-
-                    //esta_reservada = response.data!!.esta_reservada
 
                     btn_reserva.setOnClickListener(View.OnClickListener {
 

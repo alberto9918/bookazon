@@ -1,24 +1,20 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.list
 
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.lifecycle.Observer
 import com.santiagorodriguezalberto.bookazonapp.R
-import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
 import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
-
 import javax.inject.Inject
 
 

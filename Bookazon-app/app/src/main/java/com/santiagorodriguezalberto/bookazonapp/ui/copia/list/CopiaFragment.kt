@@ -1,24 +1,24 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.copia.list
 
 import android.app.AlertDialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.*
-import android.widget.*
+import android.widget.ArrayAdapter
+import android.widget.ListView
+import android.widget.TextView
+import android.widget.Toast
+import androidx.annotation.Nullable
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import androidx.annotation.Nullable
-import androidx.fragment.app.DialogFragment
-import androidx.lifecycle.Observer
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.CopiaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Copia
-
 import javax.inject.Inject
 
 class CopiaFragment : Fragment() {
@@ -69,8 +69,6 @@ class CopiaFragment : Fragment() {
                 lvGeneros.setOnItemClickListener { parent, view, position, id ->
                     generoSelect= generosList[position]
 
-                    Toast.makeText(MyApp.instance,"Género: $generoSelect", Toast.LENGTH_LONG).show()
-
                     copiaViewModel.getCopiasByGenero(nombreBiblioteca!!, generoSelect)
                     dialog.dismiss()
                 }
@@ -98,8 +96,6 @@ class CopiaFragment : Fragment() {
 
                 lvAutores.setOnItemClickListener { parent, view, position, id ->
                     autorSelect= autoresList[position]
-
-                    Toast.makeText(MyApp.instance,"Género: $autorSelect", Toast.LENGTH_LONG).show()
 
                     copiaViewModel.getCopiasByAutor(nombreBiblioteca!!, autorSelect)
                     dialog.dismiss()

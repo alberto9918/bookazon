@@ -1,15 +1,14 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.profile
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.ButterKnife
-import coil.api.load
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.api.request.EditUserRequest
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp

@@ -1,7 +1,6 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.reserva.list
 
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,21 +8,16 @@ import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
-import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.santiagorodriguezalberto.bookazonapp.R
-import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
-import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Reserva
 import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
-import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
-
 import kotlinx.android.synthetic.main.fragment_reserva.view.*
 import java.time.LocalDate
-import javax.inject.Inject
 
 class MyReservaRecyclerViewAdapter(
     val reservaViewModel: ReservaViewModel
@@ -35,8 +29,6 @@ class MyReservaRecyclerViewAdapter(
         mOnClickListener = View.OnClickListener { v ->
             val reservaClicked = v.tag as Reserva
             val idReservaSeleccionada = reservaClicked.id.toString()
-
-            //AQUI HACER EL INTENT AL DETALLE DE RESERVA
 
         }
     }

@@ -1,25 +1,20 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.reserva.list
 
-import android.content.Context
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.santiagorodriguezalberto.bookazonapp.R
-import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.ReservaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Reserva
-import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
-import retrofit2.Response
 import javax.inject.Inject
 
 
@@ -71,23 +66,6 @@ class ReservaFragment : Fragment() {
                     }
                 }
             })
-
-        /*reservaViewModel.deleteReserva.observe(viewLifecycleOwner, Observer {response ->
-            Log.e("Response",response.data.toString())
-            when(response) {
-                is Resource.Success ->  {
-                    reservaViewModel.getReservasByUser()
-                }
-
-                is Resource.Loading -> {
-                    //CARGANDO
-                }
-
-                is Resource.Error -> {
-                    Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
-                }
-            }
-        })*/
 
         return view
     }

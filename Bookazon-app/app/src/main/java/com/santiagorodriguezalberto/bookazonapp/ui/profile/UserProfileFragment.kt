@@ -3,28 +3,23 @@ package com.santiagorodriguezalberto.bookazonapp.ui.profile
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
-import android.util.Log
-import android.view.*
-import androidx.fragment.app.Fragment
-import android.widget.ImageButton
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import butterknife.BindView
 import butterknife.ButterKnife
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.google.android.material.floatingactionbutton.FloatingActionButton
-
 import com.santiagorodriguezalberto.bookazonapp.R
-import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
-import com.santiagorodriguezalberto.bookazonapp.common.SharedPreferencesManager
 import com.santiagorodriguezalberto.bookazonapp.data.UserViewModel
-import com.santiagorodriguezalberto.bookazonapp.ui.DashboardActivity
-import com.santiagorodriguezalberto.bookazonapp.ui.MainActivity
 import javax.inject.Inject
 
 class UserProfileFragment : Fragment() {

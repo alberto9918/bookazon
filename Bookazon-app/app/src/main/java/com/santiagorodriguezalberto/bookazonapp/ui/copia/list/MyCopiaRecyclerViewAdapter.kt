@@ -1,23 +1,21 @@
 package com.santiagorodriguezalberto.bookazonapp.ui.copia.list
 
+
 import android.content.Intent
-import androidx.recyclerview.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import android.widget.Toast
+import androidx.recyclerview.widget.RecyclerView
 import coil.api.load
 import coil.transform.CircleCropTransformation
 import com.santiagorodriguezalberto.bookazonapp.R
 import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.model.Copia
-import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.detail.BibliotecaDetailActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.copia.detail.CopiaDetailActivity
-
-
 import kotlinx.android.synthetic.main.fragment_copia.view.*
 
 class MyCopiaRecyclerViewAdapter() : RecyclerView.Adapter<MyCopiaRecyclerViewAdapter.ViewHolder>() {
@@ -36,7 +34,6 @@ class MyCopiaRecyclerViewAdapter() : RecyclerView.Adapter<MyCopiaRecyclerViewAda
 
             MyApp.instance.startActivity(i)
 
-            Toast.makeText(MyApp.instance, idCopiaSeleccionada, Toast.LENGTH_LONG).show()
         }
     }
 

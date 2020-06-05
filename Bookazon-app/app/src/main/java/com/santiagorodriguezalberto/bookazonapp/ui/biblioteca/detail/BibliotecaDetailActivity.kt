@@ -12,7 +12,6 @@ import com.santiagorodriguezalberto.bookazonapp.common.Constantes
 import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
-import com.santiagorodriguezalberto.bookazonapp.ui.copia.list.CopiaFragment
 import javax.inject.Inject
 
 class BibliotecaDetailActivity : AppCompatActivity() {

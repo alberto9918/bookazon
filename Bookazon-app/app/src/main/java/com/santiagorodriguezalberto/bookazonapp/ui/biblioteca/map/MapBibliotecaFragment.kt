@@ -8,7 +8,6 @@ import android.view.*
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
-import com.google.android.gms.maps.GoogleMap
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.SupportMapFragment
 import com.google.android.gms.maps.model.LatLng
@@ -19,7 +18,6 @@ import com.santiagorodriguezalberto.bookazonapp.common.MyApp
 import com.santiagorodriguezalberto.bookazonapp.common.Resource
 import com.santiagorodriguezalberto.bookazonapp.data.BibliotecaViewModel
 import com.santiagorodriguezalberto.bookazonapp.model.Biblioteca
-import com.santiagorodriguezalberto.bookazonapp.ui.RegisterActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.detail.BibliotecaDetailActivity
 import com.santiagorodriguezalberto.bookazonapp.ui.biblioteca.list.BibliotecaListActivity
 import java.util.*
@@ -32,23 +30,8 @@ class MapBibliotecaFragment : Fragment() {
     var listaBibliotecas: List<Biblioteca> = ArrayList()
     var doubleClick = true
 
-    //lateinit var dashboardActivity: DashboardActivity
-    private var mMap: GoogleMap? = null
-
     private val callback = OnMapReadyCallback { googleMap ->
-        /**
-         * Manipulates the map once available.
-         * This callback is triggered when the map is ready to be used.
-         * This is where we can add markers or lines, add listeners or move the camera.
-         * In this case, we just add a marker near Sydney, Australia.
-         * If Google Play services is not installed on the device, the user will be prompted to
-         * install it inside the SupportMapFragment. This method will only be triggered once the
-         * user has installed Google Play services and returned to the app.
-         */
 
-        /*val sydney = LatLng(-34.0, 151.0)
-        googleMap.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(sydney))*/
 
         for (biblioteca in listaBibliotecas){
 
@@ -68,14 +51,6 @@ class MapBibliotecaFragment : Fragment() {
 
                 MyApp.instance.startActivity(i)
 
-                //Toast.makeText(MyApp.instance, it.title, Toast.LENGTH_LONG).show()
-                /*val intent = Intent(MyApp.instance, RegisterActivity::class.java).apply {
-                    putExtra(Constantes.INTENT_DETAIL_KEYWORD_TITLE, it.title)
-                    Log.d("bibliotecas3",it.title)
-                    flags = Intent.FLAG_ACTIVITY_NEW_TASK
-                }
-
-                MyApp.instance.startActivity(intent)*/
             } else {
 
                 doubleClick = true

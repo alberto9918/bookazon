@@ -36,7 +36,6 @@ class MyBibliotecaRecyclerViewAdapter() : RecyclerView.Adapter<MyBibliotecaRecyc
 
             MyApp.instance.startActivity(i)
 
-            Toast.makeText(MyApp.instance, nombreBibliotecaSeleccionada.toString(), Toast.LENGTH_LONG).show()
         }
     }
 
