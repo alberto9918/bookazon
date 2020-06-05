@@ -97,7 +97,7 @@ class RegisterActivity : AppCompatActivity() {
                         }
 
                         is Resource.Error -> {
-                            Toast.makeText(MyApp.instance,"Error, ${response.message}", Toast.LENGTH_LONG).show()
+                            Toast.makeText(MyApp.instance,"Error, ese email ya está registrado", Toast.LENGTH_LONG).show()
                         }
                     }
                 })
