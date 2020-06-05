@@ -37,10 +37,10 @@ Cuando el usuario está en la lista de libros de una biblioteca, tendrá la posi
     - Activity para mostrar el detalle de una copia.
     - Posibilidad de hacer la reserva desde el detalle de una copia.
     - ListFragment para ver la lista de reservas del usuario logueado.
+    - Perfil de usuario
+    - Editar perfil de usuario
+    - Logout
+    - Filtros para listar copias por género o autor
+    - Eliminación de una reserva
 
-## Lo que falta por implementar
-  - Perfil de usuario
-  - Editar perfil de usuario
-  - Logout
-  - Filtros para listar las copias
-  - Eliminar una reserva
+
