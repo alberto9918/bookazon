@@ -11,7 +11,7 @@ Cuando el usuario está en la lista de libros de una biblioteca, tendrá la posi
   * username = alberto@gmail.com
   * password = 12345678
 
-## Implementaciones realizadas hasta ahora
+## Implementaciones realizadas
 
   - A nivel general:
     - Seguridad con JWT
